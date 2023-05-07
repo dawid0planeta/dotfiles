@@ -1,8 +1,6 @@
 ---@type MappingsTable
 local M = {}
 
-
-
 -- Your custom mappings
 M.abc = {
     n = {
@@ -47,7 +45,15 @@ M.abc = {
                 require("harpoon.ui").nav_file(6)
             end
         },
+        ["<C-d>"] = {"<C-d>zz"},
+        ["<C-u"] = {"<C-u>zz"},
+        ["<leader>s"] = {[[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]]},
+        ["<leader>u"] = {vim.cmd.UndotreeToggle},
     },
+    v = {
+        ["J"] = {":m '>+1<CR>gv=gv"},
+        ["K"] = {":m '<-2<CR>gv=gv"},
+    }
 }
 
 

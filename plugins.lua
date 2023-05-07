@@ -65,6 +65,11 @@ local plugins = {
     },
 
     {
+        "mbbill/undotree",
+        cmd = "UndotreeToggle",
+    },
+
+    {
         "ThePrimeagen/harpoon",
     },
 

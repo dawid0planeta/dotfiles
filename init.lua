@@ -7,11 +7,21 @@
 -- })
 --
 local opt = vim.opt
--- Indenting
+opt.relativenumber = true
 opt.expandtab = true
 opt.shiftwidth = 4
 opt.smartindent = true
 opt.tabstop = 4
 opt.softtabstop = 4
 
+opt.hlsearch = false
+opt.incsearch = true
 
+opt.scrolloff = 8
+
+opt.updatetime = 50
+
+opt.swapfile = false
+opt.backup = false
+opt.undodir = os.getenv("HOME") .. "/.config/nvim/undodir"
+opt.undofile = true
