@@ -15,6 +15,12 @@ local sources = {
   -- Lua
   b.formatting.stylua,
 
+  -- python
+  b.diagnostics.ruff,
+
+  -- rust
+  b.formatting.rustfmt,
+
   -- cpp
   b.formatting.clang_format,
 }

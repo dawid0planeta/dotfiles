@@ -24,6 +24,7 @@ local plugins = {
 
     -- override plugin configs
     {
+        -- after adding something using mason add it in null-ls.lua or lspconfig.lua
         "williamboman/mason.nvim",
         opts = overrides.mason
     },
@@ -45,6 +46,24 @@ local plugins = {
             opts.mapping["<S-Tab>"] = nil
         end
 
+    },
+
+    {
+        "nvim-telescope/telescope.nvim",
+        opts = function(_, opts)
+            opts.defaults = {
+                mappings = {
+                    i = {
+                        ["<esc>"] = require("telescope.actions").close,
+                        ["<C-t>"] = require("trouble.providers.telescope").open_with_trouble,
+                    },
+                    n = {
+                        ["<c-t>"] = require("trouble.providers.telescope").open_with_trouble,
+                        ["<esc>"] = require("telescope.actions").close,
+                    },
+                }
+            }
+        end,
     },
 
     {
@@ -74,6 +93,23 @@ local plugins = {
     },
 
     {
+        "folke/trouble.nvim",
+        requires = "nvim-tree/nvim-web-devicons",
+        config = function()
+            require("trouble").setup {
+                auto_preview = false,
+                action_keys = {
+                    cancel = "<esc>", -- cancel the preview and get back to your last window / buffer / cursor
+                    preview = "p", -- preview the diagnostic location
+                }
+                -- your configuration comes here
+                -- or leave it empty to use the default settings
+                -- refer to the configuration section below
+            }
+        end
+    },
+
+    {
         "zbirenbaum/copilot.lua",
         cmd = "Copilot",
         event = "InsertEnter",
@@ -87,7 +123,6 @@ local plugins = {
                     auto_trigger = true,
                     debounce = 75,
                     keymap = {
-                        accept = "<Tab>",
                         accept_word = false,
                         accept_line = false,
                         next = "<M-n>",
