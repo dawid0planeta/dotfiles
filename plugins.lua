@@ -52,14 +52,36 @@ local plugins = {
         "nvim-telescope/telescope.nvim",
         opts = function(_, opts)
             opts.defaults = {
+                sorting_strategy = "ascending",
+                layout_strategy = "horizontal",
+                layout_config = {
+                    horizontal = {
+                        prompt_position = "top",
+                        width = 0.9,
+                        height = 0.9,
+                        preview_width = 0.45,
+                    },
+                },
                 mappings = {
                     i = {
                         ["<esc>"] = require("telescope.actions").close,
+                        ["<Tab>"] = require("telescope.actions").git_staging_toggle,
                         ["<C-t>"] = require("trouble.providers.telescope").open_with_trouble,
+                        ["<leader>j"]  = require("telescope.actions").preview_scrolling_down,
+                        ["<leader>k"]  = require("telescope.actions").preview_scrolling_up,
+                        ["<C-v"]  = require("telescope.actions").select_vertical,
+                        ["<c-j>"] = require("telescope.actions").cycle_history_next,
+                        ["<c-k>"] = require("telescope.actions").cycle_history_prev,
                     },
                     n = {
-                        ["<c-t>"] = require("trouble.providers.telescope").open_with_trouble,
                         ["<esc>"] = require("telescope.actions").close,
+                        ["<Tab>"] = require("telescope.actions").git_staging_toggle,
+                        ["<c-t>"] = require("trouble.providers.telescope").open_with_trouble,
+                        ["<leader>j"]  = require("telescope.actions").preview_scrolling_down,
+                        ["<leader>k"]  = require("telescope.actions").preview_scrolling_up,
+                        ["<C-v"]  = require("telescope.actions").select_vertical,
+                        ["<c-j>"] = require("telescope.actions").cycle_history_next,
+                        ["<c-k>"] = require("telescope.actions").cycle_history_prev,
                     },
                 }
             }

@@ -69,10 +69,19 @@ M.abc = {
         ["<C-u"] = {"<C-u>zz"},
         ["<leader>s"] = {[[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]]},
         ["<leader>u"] = {vim.cmd.UndotreeToggle},
+        ["<c-j>"] = {"5j"},
+        ["<c-k>"] = {"5k"},
+        ["<leader>j"] = {"<c-w>j", "window down"},
+        ["<leader>k"] = {"<c-w>k", "window up"},
+        ["<leader>gc"] = { "<cmd> Telescope git_commits <CR>", "git commits" },
+        ["<leader>gs"] = { "<cmd> Telescope git_status <CR>", "git status" },
+        ["<leader>gb"] = { "<cmd> Telescope git_branches <CR>", "git status" },
     },
     v = {
         ["J"] = {":m '>+1<CR>gv=gv"},
         ["K"] = {":m '<-2<CR>gv=gv"},
+        ["<c-J>"] = {":m '>+5<CR>gv=gv"},
+        ["<c-K>"] = {":m '<-6<CR>gv=gv"},
         ["<leader>fw"] = {function()
             local text = vim.getVisualSelection()
             require("telescope.builtin").live_grep({default_text = text})
@@ -107,7 +116,7 @@ M.abc = {
             "accept copilot suggestion",
             opts = {noremap = true},
         },
-        ["C-s"] = {"<cmd> write <CR>", "save file"}
+        ["<C-s>"] = {"<cmd> write <CR>", "save file"}
     }
 }
 
