@@ -69,13 +69,25 @@ M.abc = {
         ["<C-u"] = {"<C-u>zz"},
         ["<leader>s"] = {[[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]]},
         ["<leader>u"] = {vim.cmd.UndotreeToggle},
-        ["<c-j>"] = {"5j"},
-        ["<c-k>"] = {"5k"},
+        ["<C-j>"] = {"5j"},
+        ["<C-k>"] = {"5k"},
         ["<leader>j"] = {"<c-w>j", "window down"},
         ["<leader>k"] = {"<c-w>k", "window up"},
         ["<leader>gc"] = { "<cmd> Telescope git_commits <CR>", "git commits" },
         ["<leader>gs"] = { "<cmd> Telescope git_status <CR>", "git status" },
         ["<leader>gb"] = { "<cmd> Telescope git_branches <CR>", "git status" },
+        ["<leader>fj"] = { "<cmd> Telescope find_files <CR>", "find files"},
+        ["<leader>fc"] = { "<cmd> Telescope commands <CR>", "find files"},
+        ["<leader>fs"] = {
+            function()
+                require("auto-session.session-lens").search_session()
+            end,
+            "find session",
+        },
+        [";q"] = { ":wqa <CR> ", "quit all"},
+        [";w"] = { ":w <CR>", "save file"},
+        ["vv"] = { "viw", "select word"},
+        ["P"] = { "<cmd> pu <CR> ==", "paste below"},
     },
     v = {
         ["J"] = {":m '>+1<CR>gv=gv"},
@@ -88,7 +100,7 @@ M.abc = {
             end,
             "live grep with visual selection",
         },
-        ["<leader>ff"] = {function()
+        ["<leader>fj"] = {function()
             local text = vim.getVisualSelection()
             require("telescope.builtin").find_files({default_text = text})
             end,
@@ -99,7 +111,8 @@ M.abc = {
             require("telescope.builtin").current_buffer_fuzzy_find({default_text = text})
             end,
             "fuzzy find in buffer with visual selection",
-        }
+        },
+        ["y"] = { "m` y ``", "copy from place"},
     },
     i = {
         ["<Tab>"] = {

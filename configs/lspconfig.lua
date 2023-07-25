@@ -3,8 +3,8 @@ local capabilities = require("plugins.configs.lspconfig").capabilities
 
 local lspconfig = require "lspconfig"
 
--- if you just want default config for the servers then put them in a table
-local servers = { "html", "cssls", "tsserver", "clangd", "rust_analyzer", "ruff_lsp"}
+-- if you just want default config for the servers install using Mason then put them in a table, after that add it to treesitter
+local servers = { "html", "cssls", "tsserver", "clangd", "rust_analyzer", "ruff_lsp", "zls"}
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {

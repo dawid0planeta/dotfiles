@@ -30,13 +30,40 @@ local plugins = {
     },
 
     {
+        "ziglang/zig.vim"
+    },
+
+    {
         "nvim-treesitter/nvim-treesitter",
         opts = overrides.treesitter,
     },
 
     {
+        'rmagatti/auto-session',
+        lazy = false,
+        config = function()
+            require("auto-session").setup {
+                log_level = "error",
+                auto_session_enable_last_session = true,
+                auto_session_enabled = true,
+                auto_session_create_enabled = true,
+                auto_save_enabled = true,
+                auto_restore_enabled = true,
+                pre_save_cmds = { "tabdo NvimTreeClose" },
+                session_lens = {
+                    load_on_setup = true,
+                    -- theme_conf = { border = true },
+                    -- previewer = false,
+                },
+
+            }
+        end
+    },
+
+    {
         "nvim-tree/nvim-tree.lua",
         opts = overrides.nvimtree,
+        lazy = false,
     },
 
     {
