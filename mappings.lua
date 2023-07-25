@@ -84,8 +84,16 @@ M.abc = {
             end,
             "find session",
         },
-        [";q"] = { ":wqa <CR> ", "quit all"},
-        [";w"] = { ":w <CR>", "save file"},
+        [";qq"] = {
+            function()
+                vim.api.nvim_command("wa")
+                vim.api.nvim_command("SessionSave")
+                vim.api.nvim_feedkeys(":qa", "n", true)
+                local key = vim.api.nvim_replace_termcodes("<CR>", true, false, true)
+                vim.api.nvim_feedkeys(key, "n", false)
+            end,
+        },
+        [";w"] = { "<cmd> wa <CR>", "save all"},
         ["vv"] = { "viw", "select word"},
         ["P"] = { "<cmd> pu <CR> ==", "paste below"},
     },

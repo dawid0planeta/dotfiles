@@ -4,6 +4,8 @@ local overrides = require("custom.configs.overrides")
 local plugins = {
 
     -- Override plugin definition options
+    -- install neovimremote
+    -- pip3 install neovim-remote
 
     {
         "neovim/nvim-lspconfig",
@@ -49,7 +51,12 @@ local plugins = {
                 auto_session_create_enabled = true,
                 auto_save_enabled = true,
                 auto_restore_enabled = true,
-                pre_save_cmds = { "tabdo NvimTreeClose" },
+                pre_save_cmds = {
+                    function()
+                        vim.cmd("tabdo NvimTreeClose")
+                        vim.cmd("wa")
+                    end
+                },
                 session_lens = {
                     load_on_setup = true,
                     -- theme_conf = { border = true },
