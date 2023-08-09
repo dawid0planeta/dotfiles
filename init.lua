@@ -7,14 +7,14 @@
 -- })
 --
 local opt = vim.opt
-opt.relativenumber = true
+opt.relativenumber = false
 opt.expandtab = true
 opt.shiftwidth = 4
 opt.smartindent = true
 opt.tabstop = 4
 opt.softtabstop = 4
 
-opt.hlsearch = false
+opt.hlsearch = true
 opt.incsearch = true
 
 opt.scrolloff = 8

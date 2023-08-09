@@ -41,6 +41,10 @@ local plugins = {
     },
 
     {
+        "lewis6991/gitsigns.nvim",
+        opts = overrides.gitsigns,
+    },
+    {
         'rmagatti/auto-session',
         lazy = false,
         config = function()
@@ -153,7 +157,7 @@ local plugins = {
         requires = "nvim-tree/nvim-web-devicons",
         config = function()
             require("trouble").setup {
-                auto_preview = false,
+                auto_preview = true,
                 action_keys = {
                     cancel = "<esc>", -- cancel the preview and get back to your last window / buffer / cursor
                     preview = "p", -- preview the diagnostic location

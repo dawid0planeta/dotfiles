@@ -75,9 +75,11 @@ M.abc = {
         ["<leader>k"] = {"<c-w>k", "window up"},
         ["<leader>gc"] = { "<cmd> Telescope git_commits <CR>", "git commits" },
         ["<leader>gs"] = { "<cmd> Telescope git_status <CR>", "git status" },
-        ["<leader>gb"] = { "<cmd> Telescope git_branches <CR>", "git status" },
-        ["<leader>fj"] = { "<cmd> Telescope find_files <CR>", "find files"},
-        ["<leader>fc"] = { "<cmd> Telescope commands <CR>", "find files"},
+        ["<leader>gb"] = { "<cmd> Telescope git_branches <CR>", "git branches" },
+        ["<leader>fd"] = { "<cmd> Telescope find_files <CR>", "find files"},
+        ["<leader>fe"] = { "<cmd> Telescope current_buffer_fuzzy_find <CR>", "fuzzy find buff"},
+        ["<leader>fc"] = { "<cmd> Telescope commands <CR>", "find commands"},
+        ["<leader>fp"] = { "<cmd> Telescope buffers <CR>", "find buffers"},
         ["<leader>fs"] = {
             function()
                 require("auto-session.session-lens").search_session()
@@ -93,9 +95,20 @@ M.abc = {
                 vim.api.nvim_feedkeys(key, "n", false)
             end,
         },
-        [";w"] = { "<cmd> wa <CR>", "save all"},
+        [";w"] = {
+            function()
+                vim.api.nvim_command("wa")
+                vim.api.nvim_command("SessionSave")
+                vim.api.nvim_command("tabdo NvimTreeOpen")
+                local key = vim.api.nvim_replace_termcodes("<C-o>", true, false, true)
+                vim.api.nvim_feedkeys(key, "n", false)
+            end,
+            "save all",
+        },
         ["vv"] = { "viw", "select word"},
         ["P"] = { "<cmd> pu <CR> ==", "paste below"},
+        ["<BS>"] = { "*N", "highlight current"},
+        ["gr"] = { "<cmd> Trouble lsp_references <CR>", "list references"},
     },
     v = {
         ["J"] = {":m '>+1<CR>gv=gv"},
@@ -108,13 +121,19 @@ M.abc = {
             end,
             "live grep with visual selection",
         },
-        ["<leader>fj"] = {function()
+        ["<leader>fd"] = {function()
             local text = vim.getVisualSelection()
             require("telescope.builtin").find_files({default_text = text})
             end,
             "find files with visual selection",
         },
-        ["<leader>fz"] = {function()
+        ["<leader>fp"] = {function()
+            local text = vim.getVisualSelection()
+            require("telescope.builtin").buffers({default_text = text})
+            end,
+            "find buffer with visual selection",
+        },
+        ["<leader>fe"] = {function()
             local text = vim.getVisualSelection()
             require("telescope.builtin").current_buffer_fuzzy_find({default_text = text})
             end,
@@ -138,7 +157,15 @@ M.abc = {
             opts = {noremap = true},
         },
         ["<C-s>"] = {"<cmd> write <CR>", "save file"}
-    }
+    },
+    t = {
+        ["<Esc>"] = {"<C-\\><C-n>", "exit terminal mode"},
+        ["<C-w>"] = {"<C-\\><C-n><C-w>", "exit terminal mode"},
+        ["<C-h>"] = {"<C-\\><C-n><C-w>h", "exit terminal mode"},
+        ["<C-j>"] = {"<C-\\><C-n><C-w>j", "exit terminal mode"},
+        ["<C-k>"] = {"<C-\\><C-n><C-w>k", "exit terminal mode"},
+        ["<C-l>"] = {"<C-\\><C-n><C-w>l", "exit terminal mode"},
+    },
 }
 
 -- more keybinds!

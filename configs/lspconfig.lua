@@ -28,7 +28,7 @@ lspconfig.pyright.setup {
             }
         }
     }
-} 
+}
 
 lspconfig.ruff_lsp.setup {
     on_attach = on_attach,
@@ -38,6 +38,5 @@ lspconfig.ruff_lsp.setup {
                 "--line-length=120",
             }
         }
-        
     }
 }
